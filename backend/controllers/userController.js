@@ -1,11 +1,11 @@
 "use strict";
 
-const UserService = require("../../services/userService");
-const generateToken = require("../../middlewares/generateToken");
-const matchPassword = require("../../middlewares/matchPassword");
-const hashPassword = require("../../middlewares/hashPassword");
+const UserService = require("../services/userService");
+const generateToken = require("../middlewares/generateToken");
+const matchPassword = require("../middlewares/matchPassword");
+const hashPassword = require("../middlewares/hashPassword");
 
-class UserResolver {
+class UserController {
   getAll = async () => {
     return await UserService.getAll();
   };
@@ -32,6 +32,7 @@ class UserResolver {
         id: isExists.id,
         name: isExists.name,
         email: isExists.email,
+        password: isExists.password,
         status: isExists.status,
         role: isExists.role,
         msg: "Successfull",
@@ -74,4 +75,4 @@ class UserResolver {
   };
 }
 
-module.exports = new UserResolver();
+module.exports = new UserController();

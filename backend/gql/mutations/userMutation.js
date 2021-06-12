@@ -1,5 +1,7 @@
+"use strict";
+
 const GraphQL = require("graphql");
-const UserResolver = require("../resolvers/userResolver");
+const UserController = require("../../controllers/userController");
 
 const { GraphQLNonNull, GraphQLString } = GraphQL;
 
@@ -22,7 +24,7 @@ const login = () => {
       },
     },
     async resolve(parent, fields) {
-      return await UserResolver.login(fields);
+      return await UserController.login(fields);
     },
   };
 };
@@ -48,7 +50,7 @@ const registration = () => {
       },
     },
     async resolve(parent, fields) {
-      return await UserResolver.registration(fields);
+      return await UserController.registration(fields);
     },
   };
 };

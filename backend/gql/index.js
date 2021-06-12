@@ -35,6 +35,7 @@ const RootMutation = new GraphQLObjectType({
 
     //Apartment
     createAppartment: ApartmentMutation.createAppartment(),
+    updateAppartment: ApartmentMutation.updateAppartment(),
   },
 });
 

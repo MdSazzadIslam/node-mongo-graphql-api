@@ -1,5 +1,7 @@
+"use strict";
+
 const GraphQL = require("graphql");
-const AppartmentResolver = require("../resolvers/appartmentResolver");
+const ApartmentController = require("../../controllers/apartmentController");
 const verifyToken = require("../../middlewares/verifyToken");
 const { GraphQLList, GraphQLString, GraphQLNonNull } = GraphQL;
 // import the user type we created
@@ -12,7 +14,9 @@ const getAll = () => {
     async resolve(parent, args, context, info) {
       const user = await verifyToken(context.headers.authorization);
       if (user) {
-        return await AppartmentResolver.getAll({});
+        const res = await ApartmentController.getAll({});
+        console.log(res);
+        return res;
       } else {
         throw new Error({
           message: "You must supply a JWT for authorization!",
@@ -36,7 +40,7 @@ const getById = () => {
     async resolve(parent, args, context, info) {
       const user = await verifyToken(context.headers.authorization);
       if (user) {
-        return await AppartmentResolver.getById({ id: args.id });
+        return await ApartmentController.getById({ id: args.id });
       } else {
         throw new Error({
           message: "You must supply a JWT for authorization!",
@@ -54,7 +58,7 @@ const getFavoriteAppartment = () => {
     async resolve(parent, args, context, info) {
       const user = await verifyToken(context.headers.authorization);
       if (user) {
-        return await AppartmentResolver.getFavoriteAppartment({});
+        return await ApartmentController.getFavoriteAppartment({});
       } else {
         throw new Error({
           message: "You must supply a JWT for authorization!",

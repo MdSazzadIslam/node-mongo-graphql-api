@@ -9,6 +9,14 @@ const ApartmentSchema = new mongoose.Schema(
       trim: true,
       maxlength: [500, "Name must be less than 10 characters"],
     },
+
+    description: {
+      type: String,
+      required: [true, "Please enter apartment description "],
+      trim: true,
+      maxlength: [2000, "Description must be less than 2000 characters"],
+    },
+
     room: {
       type: Number,
       required: [true, "Please enter no of bedroom"],

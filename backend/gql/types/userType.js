@@ -1,3 +1,5 @@
+"use strict";
+
 const GraphQL = require("graphql");
 const { GraphQLString, GraphQLBoolean } = GraphQL;
 

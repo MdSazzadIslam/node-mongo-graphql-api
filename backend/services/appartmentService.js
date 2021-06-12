@@ -1,3 +1,5 @@
+"use strict";
+
 const Appartment = require("../models/apartmentModel"); // Get Data Models
 
 class ApartmentService {
@@ -20,14 +22,11 @@ class ApartmentService {
 
   // New appartment creation
   async createAppartment(data) {
-    const newAppartment = new this.model({
-      name: data.name,
-      room: data.room,
-      address: data.address,
-      userId: data.userId,
-    });
-
-    return await newAppartment.save();
+    return await this.model(data).save();
+  }
+  // Update appartment
+  async updateAppartment(id, data) {
+    return await this.model.findOneAndUpdate({ _id: id }, { $set: data });
   }
 }
 

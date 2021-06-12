@@ -1,5 +1,59 @@
+"use strict";
+
 const GraphQL = require("graphql");
-const { GraphQLString, GraphQLID, GraphQLBoolean } = GraphQL;
+const { GraphQLString, GraphQLID, GraphQLBoolean, GraphQLList } = GraphQL;
+
+var Location = [
+  {
+    city: GraphQLString,
+    formattedAddress: GraphQLString,
+    country: GraphQLString,
+    zipCode: GraphQLString,
+    streetName: GraphQLString,
+    countryCode: GraphQLString,
+  },
+];
+
+const LocationType = new GraphQL.GraphQLObjectType({
+  name: "Location",
+  description: "Location type",
+  fields: () => ({
+    coordinates: {
+      type: [],
+      description: "We will get from api",
+    },
+
+    country: {
+      type: GraphQLString,
+      description: "We will get from api",
+    },
+
+    city: {
+      type: GraphQLString,
+      description: "We will get from api",
+    },
+
+    streetName: {
+      type: GraphQLString,
+      description: "We will get from api",
+    },
+
+    streetNumber: {
+      type: GraphQLString,
+      description: "We will get from api",
+    },
+
+    formattedAddress: {
+      type: GraphQLString,
+      description: "We will get from api",
+    },
+
+    countryCode: {
+      type: GraphQLString,
+      description: "We will get from api",
+    },
+  }),
+});
 
 const AppartmentType = new GraphQL.GraphQLObjectType({
   name: "Appartment",
@@ -13,6 +67,11 @@ const AppartmentType = new GraphQL.GraphQLObjectType({
     name: {
       type: GraphQLString,
       description: "Name of the appartment",
+    },
+
+    description: {
+      type: GraphQLString,
+      description: "Details of the appartment",
     },
 
     room: {

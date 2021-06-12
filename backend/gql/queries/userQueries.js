@@ -1,5 +1,7 @@
+"use strict";
+
 const GraphQL = require("graphql");
-const UserResolver = require("../resolvers/userResolver");
+const UserController = require("../../controllers/userController");
 
 const { GraphQLList, GraphQLString, GraphQLNonNull } = GraphQL;
 
@@ -11,7 +13,7 @@ const getAll = () => {
     type: new GraphQLList(UserType),
     description: "This will return all the users present in the database",
     async resolve(parent, args, context, info) {
-      return await UserResolver.getAll({});
+      return await UserController.getAll({});
     },
   };
 };
@@ -28,7 +30,7 @@ const getById = () => {
       },
     },
     async resolve(parent, args, context, info) {
-      return await UserResolver.getById({ id: args.id });
+      return await UserController.getById({ id: args.id });
     },
   };
 };
