@@ -2,12 +2,12 @@
 const GraphQL = require("graphql");
 const { GraphQLObjectType, GraphQLSchema } = GraphQL;
 
-// import the user query file we created
+// importing all the user query file we created
 const UserQuery = require("./queries/userQueries");
-
+const appartmentQueries = require("./queries/appartmentQueries");
 // import the user mutation file we created
 const UserMutation = require("./mutations/userMutation");
-
+const ApartmentMutation = require("./mutations/apartmentMutation");
 // lets define our root query
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
@@ -17,6 +17,10 @@ const RootQuery = new GraphQLObjectType({
     users: UserQuery.getAll(),
     user: UserQuery.getById(),
     profile: UserQuery.profile(),
+    //Appartment
+    appartments: appartmentQueries.getAll(),
+    appartment: appartmentQueries.getById(),
+    favAppartment: appartmentQueries.getFavoriteAppartment(),
   },
 });
 
@@ -28,6 +32,9 @@ const RootMutation = new GraphQLObjectType({
     // User
     login: UserMutation.login(),
     registration: UserMutation.registration(),
+
+    //Apartment
+    createAppartment: ApartmentMutation.createAppartment(),
   },
 });
 

@@ -28,6 +28,12 @@ const UserType = new GraphQL.GraphQLObjectType({
       description:
         "Status of the user, whether active or disabled. For this application status will be active by default",
     },
+
+    role: {
+      type: GraphQLString,
+      description: "User type for permission purpose",
+    },
+
     token: {
       type: GraphQLString,
       description: "Status of the user, whether active or disabled",

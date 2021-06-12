@@ -14,7 +14,7 @@ const login = () => {
     args: {
       email: {
         type: new GraphQLNonNull(GraphQLString),
-        description: "Email be left empty",
+        description: "Email can't be left empty",
       },
       password: {
         type: new GraphQLNonNull(GraphQLString),

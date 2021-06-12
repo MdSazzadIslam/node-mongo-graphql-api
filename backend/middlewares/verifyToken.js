@@ -3,25 +3,20 @@
 var jwt = require("jsonwebtoken");
 require("dotenv").config({ path: "../.env" });
 
-const verifyToken = (req, res, next) => {
-  const bearerHeader = req.headers["authorization"];
-  if (!bearerHeader)
-    return res.status(403).send({ auth: false, message: "No token provided." });
+const verifyToken = async (token) => {
+  console.log("isauthenticate", token);
+  if (token) {
+    if (token) {
+      const decoded = jwt.verify(
+        token.replace("Bearer ", ""),
+        process.env.ACCESS_TOKEN_SECRET
+      );
+      console.log(decoded);
+      return decoded;
+    }
+  }
 
-  const bearer = bearerHeader.split(" ");
-  const bearerToken = bearer[1];
-  req.token = bearerToken;
-
-  jwt.verify(bearerToken, process.env.JWT_SECRECT_KEY, function (err, decoded) {
-    if (err)
-      return res
-        .status(500)
-        .send({ auth: false, message: "Failed to authenticate token." });
-
-    // if everything good, save to request for use in other routes
-    req.userId = decoded.id;
-    next();
-  });
+  throw new Error("Not authenticated");
 };
 
 module.exports = verifyToken;

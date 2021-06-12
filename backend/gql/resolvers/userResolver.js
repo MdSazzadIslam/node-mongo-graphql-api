@@ -26,7 +26,7 @@ class UserResolver {
         throw new Error("Incorrect password");
       }
 
-      const token = await generateToken(isExists._id);
+      const token = await generateToken(isExists._id, isExists.email); //creating token to pass identity of authenticated users
       return {
         token,
         id: isExists.id,

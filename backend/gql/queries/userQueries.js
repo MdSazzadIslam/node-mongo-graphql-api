@@ -1,5 +1,4 @@
 const GraphQL = require("graphql");
-const auth = require("../../middlewares/isAuthenticated");
 const UserResolver = require("../resolvers/userResolver");
 
 const { GraphQLList, GraphQLString, GraphQLNonNull } = GraphQL;

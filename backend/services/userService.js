@@ -15,18 +15,17 @@ class UserService {
 
   // User registration
   async registration(data) {
-    const user = new this.model({
+    const newUser = new this.model({
       name: data.name,
       email: data.email,
       password: data.password,
     });
 
-    return await user.save();
+    return await newUser.save();
   }
 
   //Checking whether user exists or not
   async isEmailExists(email) {
-    console.log(email);
     return await this.model.findOne({ email });
   }
 
