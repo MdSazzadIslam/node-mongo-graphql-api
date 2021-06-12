@@ -1,10 +1,9 @@
 "use strict";
 
-const bcrypt = require("bcrypt"); // for storing hash password in the database
 const UserService = require("../../services/userService");
 const generateToken = require("../../middlewares/generateToken");
-const User = require("../../models/userModel");
-require("dotenv").config({ path: "../../../.env" });
+const matchPassword = require("../../middlewares/matchPassword");
+const hashPassword = require("../../middlewares/hashPassword");
 
 class UserResolver {
   getAll = async () => {
@@ -17,16 +16,17 @@ class UserResolver {
 
   login = async (data) => {
     // this will find a single record based on email and password return it.
-    const isExists = await UserService.isEmailExists(data);
-    console.log(isExists.password, data.password);
-    if (isExists) {
-      const isPasswordValid = bcrypt.compareSync(
-        isExists.password,
-        data.password
-      );
-      console.log(isPasswordValid);
+    const { email, password } = data;
+    const isExists = await UserService.isEmailExists(email);
 
-      const token = generateToken(isExists._id);
+    if (isExists) {
+      var isValid = await matchPassword(password, isExists.password);
+
+      if (!isValid) {
+        throw new Error("Incorrect password");
+      }
+
+      const token = await generateToken(isExists._id);
       return {
         token,
         id: isExists.id,
@@ -43,25 +43,24 @@ class UserResolver {
 
   registration = async (data) => {
     // this will find a single record based on email and password return it.
-    console.log(data);
-    const isExists = await UserService.isEmailExists(data);
-    console.log(isExists);
+    const { name, email, password } = data;
+    const isExists = await UserService.isEmailExists(email);
+
     if (!isExists) {
-      const passwordHash = await bcrypt.hash(
-        data.password,
-        10
-        //process.env.SALT_WORK_FACTOR
+      const newPassword = await hashPassword(
+        password,
+        10 //saltRounds = 10;
       );
+
       const newUser = {
-        name: data.name,
-        email: data.email,
-        password: passwordHash,
+        name,
+        email,
+        password: newPassword,
       };
 
       try {
-        const result = await UserService.registration(data);
+        const result = await UserService.registration(newUser);
         if (result) {
-          console.log(result);
           return result;
         } else {
           return new Error("Registration is not successfull.");

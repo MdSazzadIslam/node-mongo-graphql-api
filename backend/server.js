@@ -8,8 +8,20 @@ const { graphqlHTTP } = require("express-graphql"); //will set up our GraphQL HT
 
 const connectDB = require("./config/db");
 const bodyParser = require("body-parser");
+const jwt = require("jsonwebtoken");
 // let's import the schema file we just created
 const GraphQLSchema = require("./gql");
+
+const getUser = (token) => {
+  try {
+    if (token) {
+      return jwt.verify(token, process.env.JWT_SECRECT_KEY);
+    }
+    return null;
+  } catch (error) {
+    return null;
+  }
+};
 
 const main = async () => {
   await connectDB(); //calling database connection
@@ -17,7 +29,6 @@ const main = async () => {
   //Initializing app
   const app = express();
   app.use(express.json());
-  //app.use(cors());
 
   //Bodyparser middleware
   app.use(bodyParser.json());
@@ -44,6 +55,10 @@ const main = async () => {
       context: req.context,
       graphiql: process.env.NODE_ENV === "development",
       pretty: true,
+      context: ({ req }) => {
+        const token = req.get("Authorization") || "";
+        return { user: getUser(token.replace("Bearer", "")) };
+      },
     }))
   );
   // =========== GraphQL server end ========== //

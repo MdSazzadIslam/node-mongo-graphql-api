@@ -15,7 +15,6 @@ class UserService {
 
   // User registration
   async registration(data) {
-    console.log(data);
     const user = new this.model({
       name: data.name,
       email: data.email,
@@ -26,8 +25,8 @@ class UserService {
   }
 
   //Checking whether user exists or not
-  async isEmailExists(data) {
-    const { email } = data;
+  async isEmailExists(email) {
+    console.log(email);
     return await this.model.findOne({ email });
   }
 
