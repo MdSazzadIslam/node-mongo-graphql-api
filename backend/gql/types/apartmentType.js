@@ -3,7 +3,7 @@
 const GraphQL = require("graphql");
 const { GraphQLString, GraphQLID, GraphQLBoolean, GraphQLList } = GraphQL;
 
-var Location = [
+/* var Location = [
   {
     city: GraphQLString,
     formattedAddress: GraphQLString,
@@ -12,14 +12,25 @@ var Location = [
     streetName: GraphQLString,
     countryCode: GraphQLString,
   },
-];
+]; */
+
+const CoordinatesType = new GraphQL.GraphQLObjectType({
+  name: "Coordinates",
+  description: "Coordinates type",
+  fields: () => ({
+    coordinates: {
+      type: GraphQLID,
+      description: "We will get from api",
+    },
+  }),
+});
 
 const LocationType = new GraphQL.GraphQLObjectType({
   name: "Location",
   description: "Location type",
   fields: () => ({
     coordinates: {
-      type: [],
+      type: new GraphQLList(GraphQLString),
       description: "We will get from api",
     },
 
@@ -91,7 +102,7 @@ const AppartmentType = new GraphQL.GraphQLObjectType({
     },
 
     location: {
-      type: GraphQLString,
+      type: LocationType,
       description: "location will get from api",
     },
 
