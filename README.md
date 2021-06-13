@@ -1,3 +1,5 @@
+![Registration](https://user-images.githubusercontent.com/63356649/121807321-79b3d280-cc75-11eb-99c8-1e53e1b19ac8.JPG)
+![Login](https://user-images.githubusercontent.com/63356649/121807328-80424a00-cc75-11eb-8b57-b7553c04a0cf.JPG)
 
 
 
