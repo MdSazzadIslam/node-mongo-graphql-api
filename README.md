@@ -1,3 +1,4 @@
+
 #node-mongo-graphql-api
 A GraphQL API with Node and MongoDB
 
@@ -21,3 +22,21 @@ Registration
 Login
 
 ![Login](https://user-images.githubusercontent.com/63356649/121807328-80424a00-cc75-11eb-8b57-b7553c04a0cf.JPG)
+
+Add new appartment
+![Create](https://user-images.githubusercontent.com/63356649/121807385-b4b60600-cc75-11eb-9a17-cb6d42a9e110.JPG)
+
+Update a appartment
+![Update](https://user-images.githubusercontent.com/63356649/121807391-b5e73300-cc75-11eb-957a-51dad4f26c74.JPG)
+
+All the appartment Records
+![Appartments](https://user-images.githubusercontent.com/63356649/121807382-b2ec4280-cc75-11eb-8afb-2f73aa056efe.JPG)
+
+Favorite Appartments
+
+![Favorite Appartments](https://user-images.githubusercontent.com/63356649/121807387-b4b60600-cc75-11eb-8317-1557c9d7e701.JPG)
+
+Filter by geolocation
+
+![Filter](https://user-images.githubusercontent.com/63356649/121807388-b54e9c80-cc75-11eb-8488-c32550539416.JPG)
+
