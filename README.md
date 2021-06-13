@@ -39,3 +39,20 @@ Favorite Appartments
 Filter by geolocation
 
 ![Filter](https://user-images.githubusercontent.com/63356649/121807388-b54e9c80-cc75-11eb-8488-c32550539416.JPG)
+
+The easiest way to get started is to clone the repository:
+
+
+git clone
+
+# Install NPM dependencies
+npm install
+
+# Change directory
+cd backend
+
+
+# Then simply start your app
+node server.js
+
+[N.B -> Please add mongodb connection string in .env file]
