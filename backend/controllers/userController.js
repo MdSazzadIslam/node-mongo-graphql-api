@@ -49,10 +49,8 @@ class UserController {
   registration = async (data) => {
     // this will find a single record based on email and password return it.
     const { name, email, password } = data;
-    console.log(data);
     const isExists = await UserService.isEmailExists(email);
 
-    console.log(isExists);
     if (!isExists) {
       const newPassword = await hashPassword(
         password,
@@ -64,7 +62,7 @@ class UserController {
         email,
         password: newPassword,
       };
-      console.log(newUser);
+
       try {
         const result = await UserService.registration(newUser);
         if (result) {
