@@ -44,7 +44,7 @@ The easiest way to get started is to clone the repository:
 
 
 # Git Clone 
-git clone https://github.com/MdSazzadIslam/node-mongo-graphql-api.git
+git clone --depth=1 https://github.com/MdSazzadIslam/node-mongo-graphql-api.git
 
 # Install NPM dependencies
 npm install
