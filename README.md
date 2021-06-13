@@ -43,7 +43,8 @@ Filter by geolocation
 The easiest way to get started is to clone the repository:
 
 
-git clone
+# Git Clone 
+git clone https://github.com/MdSazzadIslam/node-mongo-graphql-api.git
 
 # Install NPM dependencies
 npm install
