@@ -56,7 +56,7 @@ const AppartmentType = new GraphQL.GraphQLObjectType({
 
   fields: () => ({
     id: {
-      type: new GraphQLNonNull(GraphQLString),
+      type: GraphQLString,
       description: "ID of the apartment, Generated automatically by MongoDB",
     },
     name: {
@@ -80,7 +80,7 @@ const AppartmentType = new GraphQL.GraphQLObjectType({
     },
 
     favorite: {
-      type: new GraphQLNonNull(GraphQLBoolean),
+      type: GraphQLBoolean,
       description:
         "By default all the apartment will be true which mean favorite",
       defaultValue: true,
@@ -92,7 +92,7 @@ const AppartmentType = new GraphQL.GraphQLObjectType({
     },
 
     userId: {
-      type: new GraphQLNonNull(GraphQLString),
+      type: GraphQLString,
       description: "We will get this id from token",
     },
   }),

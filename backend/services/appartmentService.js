@@ -20,6 +20,21 @@ class ApartmentService {
     return await this.model.find({ favorite: "true" });
   }
 
+  // Get appartments by filters
+  async getAppartmentByFilters(args) {
+    const { room, city, country, countryCode, streetName, formattedAddress } =
+      args;
+    return await Appartment.find({
+      $or: [
+        { city: city },
+        { country: country },
+        { countryCode: countryCode },
+        { streetName: streetName },
+        { formattedAddress: formattedAddress },
+      ],
+    });
+  }
+
   // New appartment creation
   async createAppartment(data) {
     return await this.model(data).save();

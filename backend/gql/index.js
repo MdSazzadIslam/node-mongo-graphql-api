@@ -22,6 +22,7 @@ const RootQuery = new GraphQLObjectType({
     appartments: appartmentQueries.getAll(),
     appartment: appartmentQueries.getById(),
     favAppartment: appartmentQueries.getFavoriteAppartment(),
+    apartmentByFilter: appartmentQueries.getAppartmentByFilters(),
   },
 });
 

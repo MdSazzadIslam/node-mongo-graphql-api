@@ -37,7 +37,7 @@ const createAppartment = () => {
     async resolve(parent, args, context) {
       const user = await verifyToken(context.headers.authorization);
       if (user) {
-        return await ApartmentController.createAppartment(fields, user.id);
+        return await ApartmentController.createAppartment(args, user.id);
       } else {
         throw new Error({
           msg: "You must supply a JWT for authorization!",

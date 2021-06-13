@@ -15,6 +15,10 @@ class ApartmentController {
     return await AppartmentService.getFavoriteAppartment();
   };
 
+  getAppartmentByFilters = async (args) => {
+    return await AppartmentService.getAppartmentByFilters(args);
+  };
+
   createAppartment = async (data, id) => {
     const newData = {
       name: data.name,

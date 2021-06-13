@@ -15,12 +15,10 @@ const getAll = () => {
     async resolve(parent, args, context, info) {
       const user = await verifyToken(context.headers.authorization);
       if (user) {
-        const res = await ApartmentController.getAll({});
-        console.log(res);
-        return res;
+        return await ApartmentController.getAll();
       } else {
         throw new Error({
-          message: "You must supply a JWT for authorization!",
+          msg: "You must supply a JWT for authorization!",
         });
       }
     },
@@ -42,11 +40,10 @@ const getById = () => {
     async resolve(parent, args, context, info) {
       const user = await verifyToken(context.headers.authorization);
       if (user) {
-        console.log(args.id);
         return await ApartmentController.getById(args.id);
       } else {
         throw new Error({
-          message: "You must supply a JWT for authorization!",
+          msg: "You must supply a JWT for authorization!",
         });
       }
     },
@@ -65,11 +62,68 @@ const getFavoriteAppartment = () => {
         return await ApartmentController.getFavoriteAppartment({});
       } else {
         throw new Error({
-          message: "You must supply a JWT for authorization!",
+          msg: "You must supply a JWT for authorization!",
         });
       }
     },
   };
 };
 
-module.exports = { getAll, getById, getFavoriteAppartment };
+//to display single record
+const getAppartmentByFilters = () => {
+  return {
+    type: new GraphQLList(AppartmentType),
+    description:
+      "This will return data of a single appartment based on the id provided",
+    args: {
+      id: {
+        type: GraphQLString,
+      },
+
+      city: {
+        type: GraphQLString,
+      },
+
+      country: {
+        type: GraphQLString,
+      },
+
+      room: {
+        type: GraphQLString,
+      },
+
+      streetName: {
+        type: GraphQLString,
+      },
+
+      streetNumber: {
+        type: GraphQLString,
+      },
+
+      formattedAddress: {
+        type: GraphQLString,
+      },
+
+      countryCode: {
+        type: GraphQLString,
+      },
+    },
+    async resolve(parent, args, context, info) {
+      const user = await verifyToken(context.headers.authorization);
+      if (user) {
+        return await ApartmentController.getAppartmentByFilters(args);
+      } else {
+        throw new Error({
+          msg: "You must supply a JWT for authorization!",
+        });
+      }
+    },
+  };
+};
+
+module.exports = {
+  getAll,
+  getById,
+  getFavoriteAppartment,
+  getAppartmentByFilters,
+};
