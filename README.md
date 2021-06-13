@@ -1,11 +1,16 @@
 
 
+
 # node-mongo-graphql-api
 A GraphQL API with Node and MongoDB
 
 Tech
 
 ![Tech](https://user-images.githubusercontent.com/63356649/121806425-a665eb00-cc71-11eb-8073-5772687fcc9d.JPG)
+
+Features
+
+![Features](https://user-images.githubusercontent.com/63356649/121806474-ca293100-cc71-11eb-9c89-78826e5c032f.JPG)
 
 Packages
 
