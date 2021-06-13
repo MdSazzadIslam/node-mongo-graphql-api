@@ -29,9 +29,9 @@ const ApartmentSchema = new mongoose.Schema(
     },
 
     favorite: {
-      type: String,
+      type: Boolean,
       required: [true, "By default all the appartment will be favorite"],
-      default: "true",
+      default: true,
     },
 
     zipCode: {

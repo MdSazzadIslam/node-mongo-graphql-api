@@ -7,6 +7,7 @@ const { GraphQLList, GraphQLString, GraphQLNonNull } = GraphQL;
 // import the user type we created
 const AppartmentType = require("../types/apartmentType");
 
+//to display all the records
 const getAll = () => {
   return {
     type: new GraphQLList(AppartmentType),
@@ -26,6 +27,7 @@ const getAll = () => {
   };
 };
 
+//to display single record
 const getById = () => {
   return {
     type: AppartmentType,
@@ -40,7 +42,8 @@ const getById = () => {
     async resolve(parent, args, context, info) {
       const user = await verifyToken(context.headers.authorization);
       if (user) {
-        return await ApartmentController.getById({ id: args.id });
+        console.log(args.id);
+        return await ApartmentController.getById(args.id);
       } else {
         throw new Error({
           message: "You must supply a JWT for authorization!",
@@ -50,6 +53,7 @@ const getById = () => {
   };
 };
 
+//to get favorite appartment
 const getFavoriteAppartment = () => {
   return {
     type: new GraphQLList(AppartmentType),

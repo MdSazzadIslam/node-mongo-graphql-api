@@ -3,7 +3,7 @@
 const GraphQL = require("graphql");
 const ApartmentController = require("../../controllers/apartmentController");
 const verifyToken = require("../../middlewares/verifyToken");
-const { GraphQLNonNull, GraphQLString, GraphQLInt } = GraphQL;
+const { GraphQLNonNull, GraphQLString, GraphQLInt, GraphQLBoolean } = GraphQL;
 
 // lets import our user type
 const ApartmentType = require("../types/apartmentType");
@@ -34,7 +34,7 @@ const createAppartment = () => {
         description: "Address can't be left empty",
       },
     },
-    async resolve(parent, fields, context) {
+    async resolve(parent, args, context) {
       const user = await verifyToken(context.headers.authorization);
       if (user) {
         return await ApartmentController.createAppartment(fields, user.id);
@@ -59,23 +59,23 @@ const updateAppartment = () => {
       },
 
       name: {
-        type: new GraphQLNonNull(GraphQLString),
-        description: "Name can't be left empty",
+        type: GraphQLString,
       },
 
       description: {
-        type: new GraphQLNonNull(GraphQLString),
-        description: "Description can't be left empty",
+        type: GraphQLString,
       },
 
       room: {
-        type: new GraphQLNonNull(GraphQLInt),
-        description: "Room can't be left empty",
+        type: GraphQLInt,
       },
 
       address: {
-        type: new GraphQLNonNull(GraphQLString),
-        description: "Address can't be left empty",
+        type: GraphQLString,
+      },
+
+      favorite: {
+        type: GraphQLBoolean,
       },
     },
     async resolve(parent, args, context, info) {

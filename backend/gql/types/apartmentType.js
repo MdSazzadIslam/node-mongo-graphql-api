@@ -1,29 +1,13 @@
 "use strict";
 
 const GraphQL = require("graphql");
-const { GraphQLString, GraphQLID, GraphQLBoolean, GraphQLList } = GraphQL;
-
-/* var Location = [
-  {
-    city: GraphQLString,
-    formattedAddress: GraphQLString,
-    country: GraphQLString,
-    zipCode: GraphQLString,
-    streetName: GraphQLString,
-    countryCode: GraphQLString,
-  },
-]; */
-
-const CoordinatesType = new GraphQL.GraphQLObjectType({
-  name: "Coordinates",
-  description: "Coordinates type",
-  fields: () => ({
-    coordinates: {
-      type: GraphQLID,
-      description: "We will get from api",
-    },
-  }),
-});
+const {
+  GraphQLString,
+  GraphQLID,
+  GraphQLBoolean,
+  GraphQLList,
+  GraphQLNonNull,
+} = GraphQL;
 
 const LocationType = new GraphQL.GraphQLObjectType({
   name: "Location",
@@ -72,33 +56,34 @@ const AppartmentType = new GraphQL.GraphQLObjectType({
 
   fields: () => ({
     id: {
-      type: GraphQLString,
+      type: new GraphQLNonNull(GraphQLString),
       description: "ID of the apartment, Generated automatically by MongoDB",
     },
     name: {
-      type: GraphQLString,
+      type: new GraphQLNonNull(GraphQLString),
       description: "Name of the appartment",
     },
 
     description: {
-      type: GraphQLString,
+      type: new GraphQLNonNull(GraphQLString),
       description: "Details of the appartment",
     },
 
     room: {
-      type: GraphQLID,
+      type: new GraphQLNonNull(GraphQLID),
       description: "Number of bedroom",
     },
 
     address: {
-      type: GraphQLString,
+      type: new GraphQLNonNull(GraphQLString),
       description: "Appartment location",
     },
 
     favorite: {
-      type: GraphQLBoolean,
+      type: new GraphQLNonNull(GraphQLBoolean),
       description:
         "By default all the apartment will be true which mean favorite",
+      defaultValue: true,
     },
 
     location: {
@@ -107,7 +92,7 @@ const AppartmentType = new GraphQL.GraphQLObjectType({
     },
 
     userId: {
-      type: GraphQLString,
+      type: new GraphQLNonNull(GraphQLString),
       description: "We will get this id from token",
     },
   }),

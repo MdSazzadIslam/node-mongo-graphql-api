@@ -10,8 +10,12 @@ class UserController {
     return await UserService.getAll();
   };
 
-  getById = async (params) => {
-    return await UserService.getById(params.id);
+  getById = async (id) => {
+    return await UserService.getById(id);
+  };
+
+  getUserProfile = async (id) => {
+    return await UserService.getById(id);
   };
 
   login = async (data) => {

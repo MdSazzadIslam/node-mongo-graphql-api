@@ -29,18 +29,8 @@ class ApartmentController {
 
   updateAppartment = async (data) => {
     const isAppartmentExists = await AppartmentService.getById(data.id);
-    console.log("Before", isAppartmentExists);
     if (isAppartmentExists) {
-      Object.keys(data).map((field) => {
-        isAppartmentExists[field] = data[field];
-      });
-
-      console.log("After", isAppartmentExists);
-
-      return await AppartmentService.updateAppartment(
-        data.id,
-        isAppartmentExists
-      );
+      return await AppartmentService.updateAppartment(data.id, data);
     } else {
       throw new Error({ msg: "Record not found" });
     }

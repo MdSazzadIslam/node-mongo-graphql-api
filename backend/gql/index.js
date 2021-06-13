@@ -2,12 +2,13 @@
 const GraphQL = require("graphql");
 const { GraphQLObjectType, GraphQLSchema } = GraphQL;
 
-// importing all the user query file we created
+// importing all the queries
 const UserQuery = require("./queries/userQueries");
 const appartmentQueries = require("./queries/appartmentQueries");
-// import the user mutation file we created
+// import the  mutations
 const UserMutation = require("./mutations/userMutation");
 const ApartmentMutation = require("./mutations/apartmentMutation");
+
 // lets define our root query
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
