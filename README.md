@@ -39,4 +39,3 @@ Favorite Appartments
 Filter by geolocation
 
 ![Filter](https://user-images.githubusercontent.com/63356649/121807388-b54e9c80-cc75-11eb-8488-c32550539416.JPG)
-
