@@ -10,8 +10,7 @@ Features
 ![Features](https://user-images.githubusercontent.com/63356649/121806474-ca293100-cc71-11eb-9c89-78826e5c032f.JPG)
 
 
-[In order to get access queries and mutation please login. If you don't have an account please registration first. 
-Otherwise please use email: netsazzad@gmail.com and password: 12345678 for login.]
+[In order to get access queries and mutation please login. If you don't have an account please registration first.]
 
 Packages
 
