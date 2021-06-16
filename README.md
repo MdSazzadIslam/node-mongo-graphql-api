@@ -2,6 +2,8 @@
 #node-mongo-graphql-api
 A GraphQL API with Node and MongoDB
 
+Don't forget to give this repo a ⭐ if you like and want to appreciate my efforts
+
 Tech
 
 ![Tech](https://user-images.githubusercontent.com/63356649/121806425-a665eb00-cc71-11eb-8073-5772687fcc9d.JPG)
@@ -59,3 +61,5 @@ cd backend
 node server.js
 
 [N.B -> Please add mongodb connection string in .env file]
+
+Don't forget to give this repo a ⭐ if you like and want to appreciate my efforts
