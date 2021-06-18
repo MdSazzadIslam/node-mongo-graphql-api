@@ -13,48 +13,49 @@ const bodyParser = require("body-parser");
 const GraphQLSchema = require("./gql");
 //const jwt = require("express-jwt");
 
-const main = async () => {
-  await connectDB(); //calling database connection
+//const main = async () => {
+connectDB(); //calling database connection
 
-  //Initializing app
-  const app = express();
-  app.use(express.json());
-  app.use(cors());
-  //Bodyparser middleware
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({ extended: true }));
+//Initializing app
+const app = express();
+app.use(express.json());
+app.use(cors());
+//Bodyparser middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-  //morgan only use for developement purpose
-  if (process.env.NODE_ENV === "development") {
-    app.use(logger("dev"));
-  }
+//morgan only use for developement purpose
+if (process.env.NODE_ENV === "development") {
+  app.use(logger("dev"));
+}
 
-  //create a write stream(in append mode)
-  var accessLogStream = fs.createWriteStream(
-    path.join(__dirname, "/logs/access.log"),
-    { flags: "a" }
+//create a write stream(in append mode)
+var accessLogStream = fs.createWriteStream(
+  path.join(__dirname, "/logs/access.log"),
+  { flags: "a" }
+);
+//setup the logger
+app.use(logger("combined", { stream: accessLogStream }));
+
+////////////////GraphQL server///////////////////////
+app.use(
+  "/graphql",
+  graphqlHTTP({
+    schema: GraphQLSchema,
+    graphiql: process.env.NODE_ENV === "development",
+    pretty: true,
+  })
+);
+// =========== GraphQL server end ========== //
+
+app.listen(process.env.PORT, () => {
+  console.log(
+    `⚡️[server]: running at https://localhost:${process.env.PORT}  ${process.env.NODE_ENV}`
   );
-  //setup the logger
-  app.use(logger("combined", { stream: accessLogStream }));
-
-  ////////////////GraphQL server///////////////////////
-  app.use(
-    "/graphql",
-    graphqlHTTP({
-      schema: GraphQLSchema,
-      graphiql: process.env.NODE_ENV === "development",
-      pretty: true,
-    })
-  );
-  // =========== GraphQL server end ========== //
-
-  app.listen(process.env.PORT, () => {
-    console.log(
-      `⚡️[server]: running at https://localhost:${process.env.PORT}  ${process.env.NODE_ENV}`
-    );
-  });
-};
-
-main().catch((err) => {
+});
+//};
+/* main().catch((err) => {
   console.log(err);
 });
+ */
+module.exports = app;
