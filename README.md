@@ -2,13 +2,17 @@
 #node-mongo-graphql-api
 A GraphQL API with Node and MongoDB
 
+Don't forget to give this repo a ⭐ if you like and want to appreciate my efforts
+
 Tech
 
 ![Tech](https://user-images.githubusercontent.com/63356649/121806425-a665eb00-cc71-11eb-8073-5772687fcc9d.JPG)
-
 Features
 
 ![Features](https://user-images.githubusercontent.com/63356649/121806474-ca293100-cc71-11eb-9c89-78826e5c032f.JPG)
+
+
+[In order to get access queries and mutation please login. If you don't have an account please registration first.]
 
 Packages
 
@@ -43,7 +47,8 @@ Filter by geolocation
 The easiest way to get started is to clone the repository:
 
 
-git clone
+# Git Clone 
+git clone --depth=1 https://github.com/MdSazzadIslam/node-mongo-graphql-api.git
 
 # Install NPM dependencies
 npm install
@@ -56,3 +61,5 @@ cd backend
 node server.js
 
 [N.B -> Please add mongodb connection string in .env file]
+
+Don't forget to give this repo a ⭐ if you like and want to appreciate my efforts
