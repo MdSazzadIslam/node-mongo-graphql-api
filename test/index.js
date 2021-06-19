@@ -143,7 +143,11 @@ describe("GraphQL", () => {
             id,
             name,
             address,
-            favorite
+            favorite,
+            location{
+              city,
+              country
+            }
           }
         }`,
     };

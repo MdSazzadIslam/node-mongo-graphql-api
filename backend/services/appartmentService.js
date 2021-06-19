@@ -41,7 +41,7 @@ class ApartmentService {
   }
   // Update appartment
   async updateAppartment(id, data) {
-    return await this.model.findOneAndUpdate({ _id: id }, { $set: data });
+    return await this.model.findOneAndUpdate({ _id: id }, { $set: data }); //$set operator is used to replace the value of a field to the specified value
   }
 }
 

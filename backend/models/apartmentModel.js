@@ -7,7 +7,7 @@ const ApartmentSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please enter apartment name"],
       trim: true,
-      maxlength: [500, "Name must be less than 10 characters"],
+      maxlength: [500, "Name must be less than 500 characters"],
     },
 
     description: {
@@ -94,7 +94,7 @@ ApartmentSchema.pre("save", async function (next) {
     countryCode: loc[0].countryCode,
   };
 
-  next();
+  next(); // basically moves to the next middleware function. It's a express middleware function
 });
 
 const Apartment = new mongoose.model("Apartment", ApartmentSchema);

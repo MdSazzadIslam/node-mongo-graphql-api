@@ -4,7 +4,6 @@ const GraphQL = require("graphql");
 const UserController = require("../../controllers/userController");
 const verifyToken = require("../../middlewares/verifyToken");
 const { GraphQLList, GraphQLString, GraphQLNonNull } = GraphQL;
-
 // importing the user type
 const UserType = require("../types/userType");
 
