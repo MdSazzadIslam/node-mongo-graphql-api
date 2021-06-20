@@ -1,0 +1,150 @@
+//Registration
+mutation ($name: String!, $email: String!, $password: String!) {
+  registration(name: $name, email: $email, password: $password) {
+    name
+    email
+    password
+    role
+    status
+    token
+  }
+}
+
+{
+  "name": "Adam",
+  "email": "adam@gmail.com",
+  "password":"12345678"
+}
+
+
+//login
+mutation ($email: String!, $password: String!) {
+  login(email: $email, password: $password) {
+    name
+    email
+    password
+    role
+    status,
+    token
+  }
+}
+
+
+{
+	"email": "netsazzad@gmail.com",
+	"password": "12345678"
+	
+}
+
+//create new appartment
+mutation ($name: String!, $description: String!, $room: Int!, $address: String!) {
+  createAppartment(name: $name, description: $description, room: $room, address: $address) {
+    name
+    description
+    address
+    room
+    location {
+      coordinates
+      country
+      city
+      streetName
+      streetNumber
+      countryCode
+      formattedAddress
+    }
+  }
+}
+
+
+
+{
+  "name": "Luxy Apartment Dhaka",
+  "description": "Beautifull house with 3d painting",
+  "room": 5,
+  "address": "Block-B Dhaka 1216"
+	
+}
+
+//Update Appartment
+mutation ($id: String!) {
+  updateAppartment(id: $id, name: "Super Delux Apartment", description: "Hello", room: 2, address: "Block-BDhaka 1216") {
+    id
+    name,
+    location{
+      coordinates
+    }
+  }
+}
+
+//get all apartments
+query  {
+  appartments{
+    name
+    address
+    location {
+      country
+      countryCode
+      coordinates
+      city
+      streetName
+      streetNumber
+      formattedAddress
+      countryCode
+    }
+  }
+}
+
+
+//get appartment by id
+query ($id: String!) {
+  appartment(id: $id) {
+    name
+    address
+    location {
+      country
+      countryCode
+      coordinates
+      city
+      streetName
+      streetNumber
+      formattedAddress
+      countryCode
+    }
+  }
+}
+
+//get favorite appartment
+query  {
+  favAppartment{
+    name
+    address
+    location {
+      country
+      countryCode
+      coordinates
+      city
+      streetName
+      streetNumber
+      formattedAddress
+      countryCode
+    }
+  }
+}
+
+//Appartment by varios Filter
+query ($countryCode: String!, $city: String, $room: String!  ) {
+  apartmentByFilter(countryCode: $countryCode, city: $city, room: $room) {
+    name
+    address
+    location {
+      country
+      countryCode
+      coordinates
+      city
+      streetName
+      streetNumber
+      formattedAddress
+      countryCode
+    }
+  }
+}
